@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: spring-boot-data
+  namespace: kube-logging
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot-data
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: spring-boot-data
+    spec:
+      containers:
+        - name: spring-boot-data
+          image: springboot-data-demo # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster

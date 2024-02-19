@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-log
+  namespace: kube-logging
+  labels:
+    app: elasticsearch
+spec:
+  containers:
+  - name: log-check
+    image: busybox
+    args: [/bin/sh, -c, 'while true;do echo "pushing log to ek"; done']
